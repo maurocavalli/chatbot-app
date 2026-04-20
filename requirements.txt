@@ -1,4 +1,4 @@
-streamlit
 boxsdk
-requests
-pyjwt
+pyairtable
+twilio
+streamlit
