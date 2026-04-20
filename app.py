@@ -1,17 +1,14 @@
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+from boxsdk import JWTAuth, Client
 
-import streamlit as st
-from services.box_client import list_folder_items
-from services.airtable_client import add_record
-from services.whatsapp_client import send_message
+def list_folder_items(folder_id):
+    auth = JWTAuth.from_settings_file('box_config.json')
+    client = Client(auth)
+    items = client.folder(folder_id).get_items()
+    return items
 
-st.title("Chatbot – Box + Airtable + WhatsApp")
 
-folder_id = st.text_input("Box Folder ID", "0")
 
-if st.button("List Files"):
-    items = list_folder_items(folder_id)
-    for item in items:
-        st.write(f"{item.name} – {item.id}")
+
+
+
+
